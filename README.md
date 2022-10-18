@@ -1,6 +1,6 @@
 # WSChatDLL
 a simall chat software 's dll   
 
-## Plain   
+## Explain   
 GUI --> https://github.com/fumiama/WinsockChat    
 
