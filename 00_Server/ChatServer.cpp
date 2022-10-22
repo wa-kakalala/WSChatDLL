@@ -1,13 +1,12 @@
-# include <winsock.h>
-# include <conio.h>
+
 # include "Chat_Server.h"
-# include <stdio.h>
-# include <string.h>
-# pragma comment(lib,"wsock32.lib")
+
 
 socket_list sock_list;
 Message recv_msg;
 Message send_msg;
+char key_input_buf[SENDDATA_SIZE];//最多十句话？要一次处理很多句话吗
+std::mutex input_buf_lock;
 
 /*待完成！！！对接受数据的处理，比如知道名字，还有函数的注释没写，函数的功能没测，测完之后需成改dll工程，写套接字也还没有加，*/
 
@@ -31,6 +30,7 @@ int  ServerStart(const char* ip, unsigned short* port, const char* name, int mod
 	struct sockaddr_in ser_addr, remote_addr;
 	fd_set readfds, writefds, exceptfds;
 	char buf[RECVBUF_SIZE];
+	char send_buf[RECVBUF_SIZE];
 	
 	timeval timeout;
 	unsigned long arg = 1;
@@ -99,6 +99,16 @@ int  ServerStart(const char* ip, unsigned short* port, const char* name, int mod
 			memset(buf, 0, RECVBUF_SIZE);
 		}
 
+		//UDP send
+		if (FD_ISSET(sock_list.listen_sock_u,&writefds))
+		{
+			std::lock_guard<std::mutex> lock(input_buf_lock);
+			strcpy_s(send_msg.data, strlen(key_input_buf) + 1, key_input_buf);
+			memset(key_input_buf, 0, SENDDATA_SIZE);
+			sprintf(send_buf, "%s:\n%s\n", send_msg.name, send_msg.data);
+			//retval = sendto(s, send_buf, strlen(send_msg.name) + strlen(send_msg.data), 0,);?咋发啊，发给谁
+		}
+
 		//TCP receive:whether have new connect established
 		if (FD_ISSET(sock_list.listen_sock_t, &readfds)) {
 			sock_acpt = accept(sock_list.listen_sock_t, (sockaddr*)&remote_addr, &len);
@@ -138,17 +148,23 @@ int  ServerStart(const char* ip, unsigned short* port, const char* name, int mod
 				strcpy_s(recv_msg.data,strlen(buf)+1,buf);
 				printf("->%s\n", buf);
 				memset(buf, 0, RECVBUF_SIZE);
+			}
 
+			if (FD_ISSET(s, &writefds)) {//lock_guard and unique guard will block
+				//lock write socket?  key input buf
+				std::lock_guard<std::mutex> lock(input_buf_lock);
+				strcpy_s(send_msg.data, strlen(key_input_buf) + 1, key_input_buf);
+				memset(key_input_buf, 0, SENDDATA_SIZE);
+				sprintf(send_buf, "%s:\n%s\n", send_msg.name, send_msg.data);
+				retval = send(s, send_buf, strlen(send_msg.name) + strlen(send_msg.data), 0);
+				}
 			}
 		}
-
-
 		FD_ZERO(&readfds);
-		//FD_ZERO(&writefds);
-		//FD_ZERO(&exceptfds);
+		FD_ZERO(&writefds);
+		FD_ZERO(&exceptfds);
 
 	}
-}
 
 
 

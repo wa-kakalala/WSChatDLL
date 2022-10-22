@@ -1,11 +1,23 @@
+# include <stdio.h>
+# include <string.h>
+# include <mutex>
+# pragma comment(lib,"wsock32.lib")
+# include <winsock.h>
+# include <conio.h>
+
 #define CHAT_MODE_UDP 1
 #define CHAT_MODE_TCP 2
 #define LISTEN_PORT_T 0x1234
 #define LISTEN_PORT_U 0x1234
 #define SOCK_LIST_SIZE 64
-#define RECVBUF_SIZE 512
-#define RECVDATA_SIZE 512
-#define BACK_LOG_VAL 5
+
+#define SENDDATA_SIZE 512   //Defines the buffer size for receiving keyboard data
+#define RECVDATA_SIZE 512   //Defines the size of the message buffer to be fetched by the application layer
+#define SENDBUF_SIZE 512     //Defines the size of the message buffer that will be sent
+#define RECVBUF_SIZE 512    //Define the buffer size for receiving remote data
+#define MSG_DATA 512
+
+#define BACK_LOG_VAL 5        
 //Server's socket list
 typedef struct socket_list {
     SOCKET listen_sock_t;//refer to MSP,port is 18
@@ -19,7 +31,7 @@ typedef struct socket_list {
 typedef struct Message {
     int len;
     char name[32];
-    char data[];
+    char data[MSG_DATA];
 }Message;
 
 int  Init(void (*f) (const char* msg, int msglen));
