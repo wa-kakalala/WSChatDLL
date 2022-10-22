@@ -1,4 +1,9 @@
-03_WSChatDLL/.vs
-03_WSChatDLL/.vs/*
-03_WSChatDLL/x64
-03_WSChatDLL/x64/*
+01_Client/.vs
+01_Client/.vs/*
+01_Client/x64
+01_Client/x64/*
+02_WSChatDLL/.vs
+02_WSChatDLL/.vs/*
+02_WSChatDLL/x64
+02_WSChatDLL/x64/*
+

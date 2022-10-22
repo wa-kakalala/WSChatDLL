@@ -1,0 +1,9 @@
+﻿  pch.cpp
+c:\users\29620\desktop\winsockchat\wschatdll\03_wschatdll\wschatdll\pch.cpp(84): warning C4244: “return”: 从“SOCKET”转换到“int”，可能丢失数据
+c:\users\29620\desktop\winsockchat\wschatdll\03_wschatdll\wschatdll\pch.cpp(112): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+c:\users\29620\desktop\winsockchat\wschatdll\03_wschatdll\wschatdll\pch.cpp(149): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+c:\users\29620\desktop\winsockchat\wschatdll\03_wschatdll\wschatdll\pch.cpp(128): warning C4101: “client_addr”: 未引用的局部变量
+c:\users\29620\desktop\winsockchat\wschatdll\03_wschatdll\wschatdll\pch.cpp(117): warning C4715: “Receive”: 不是所有的控件路径都返回值
+  dllmain.cpp
+    正在创建库 C:\Users\29620\Desktop\WinsockChat\WSChatDLL\03_WSChatDLL\x64\Debug\WSChatDLL.lib 和对象 C:\Users\29620\Desktop\WinsockChat\WSChatDLL\03_WSChatDLL\x64\Debug\WSChatDLL.exp
+  WSChatDLL.vcxproj -> C:\Users\29620\Desktop\WinsockChat\WSChatDLL\03_WSChatDLL\x64\Debug\WSChatDLL.dll

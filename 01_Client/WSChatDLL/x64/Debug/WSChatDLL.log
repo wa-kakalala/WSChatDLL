@@ -1,0 +1,6 @@
+﻿  pch.cpp
+C:\Users\29620\Desktop\WinsockChat\WSChatDLL\01_Client\WSChatDLL\pch.cpp(74): warning C4715: “ClientConnect”: 不是所有的控件路径都返回值
+C:\Users\29620\Desktop\WinsockChat\WSChatDLL\01_Client\WSChatDLL\pch.cpp(98): warning C4715: “ClientSendMessage”: 不是所有的控件路径都返回值
+  dllmain.cpp
+    正在创建库 C:\Users\29620\Desktop\WinsockChat\WSChatDLL\01_Client\x64\Debug\WSChatDLL.lib 和对象 C:\Users\29620\Desktop\WinsockChat\WSChatDLL\01_Client\x64\Debug\WSChatDLL.exp
+  WSChatDLL.vcxproj -> C:\Users\29620\Desktop\WinsockChat\WSChatDLL\01_Client\x64\Debug\WSChatDLL.dll
