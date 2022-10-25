@@ -4,6 +4,9 @@
 # pragma comment(lib,"wsock32.lib")
 # include <winsock.h>
 # include <conio.h>
+# include <errno.h>
+
+# define _CRT_SECURE_NO_WARNINGS
 
 #define CHAT_MODE_UDP 1
 #define CHAT_MODE_TCP 2
@@ -14,8 +17,8 @@
 #define SENDDATA_SIZE 512   //Defines the buffer size for receiving keyboard data
 #define RECVDATA_SIZE 512   //Defines the size of the message buffer to be fetched by the application layer
 #define SENDBUF_SIZE 512     //Defines the size of the message buffer that will be sent
-#define RECVBUF_SIZE 512    //Define the buffer size for receiving remote data
-#define MSG_DATA 512
+#define RECVBUF_SIZE 1024    //Define the buffer size for receiving remote data
+#define MSG_DATA 1024
 
 #define BACK_LOG_VAL 5        
 //Server's socket list
@@ -37,9 +40,6 @@ typedef struct Message {
 int  Init(void (*f) (const char* msg, int msglen));
 int  ServerStart(const char* ip, unsigned short* port, const char* name, int mode);//Server Start
 int  ServerClose();//Server Close
-
-int MessageSend(char *buf);//Message send
-int RecvMessageProcess(char *buf);//Deal with received message
 
 void InitList(socket_list* list);
 void InsertList(SOCKET s, socket_list* list);
