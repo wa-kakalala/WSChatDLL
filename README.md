@@ -1,6 +1,8 @@
 # WSChatDLL
 a simall chat software 's dll   
 
+![](./tempic/pic.jpeg)
+
 ## Explain   
 GUI --> https://github.com/fumiama/WinsockChat    
 
