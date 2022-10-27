@@ -17,13 +17,11 @@
 // 添加要在此处预编译的标头
 #include "framework.h"
 
-
-extern "C" DLLAPI int Bind(const char*ip, unsigned short* port);
-extern "C" DLLAPI int Close();
-extern "C" DLLAPI int Receive(void(*f)(const char*msg));
-extern "C" DLLAPI void StopReceive();
-extern "C" DLLAPI int Ping(const char*ip, unsigned short port);
-extern "C" DLLAPI int Init();
+extern "C" DLLAPI int  Init(void (*f) (const char* msg, int msglen));
 extern "C" DLLAPI void Defer();
-
+extern "C" DLLAPI int  ServerStart(const char* ip, unsigned short port, const char* name, int mode);
+extern "C" DLLAPI int  ClientConnect(const char* ip, unsigned short port, int mode);
+extern "C" DLLAPI int  ClientSendMessage(const char* msg, int msglen);
+extern "C" DLLAPI int  ServerClose();
+extern "C" DLLAPI int  ClientClose();
 #endif //WSCHATDLL_H
